@@ -1,18 +1,13 @@
 import React from 'react'
-import withResolve from '../resolve_next/packages/resolve-next.js/withResolve'
+import withResolve from '../resolve/packages/resolve-nextjs/withResolve'
 import App from '../components/App'
-import routes from '../routes'
-const { Router } = routes;
+import createStore from '../createStore'
+import TodoList from '../containers/TodoList'
 
-@withResolve
-export default class PageIndex extends React.PureComponent {
-  componentDidMount() {
-    Router.pushRoute('PageRecipes')
-  }
+const PageIndex = () => (
+  <App>
+    <TodoList/>
+  </App>
+)
 
-  render() {
-    return (
-      <App/>
-    )
-  }
-}
+export default withResolve(createStore)(PageIndex)

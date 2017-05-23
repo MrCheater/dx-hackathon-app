@@ -1,41 +1,33 @@
-import * as ActionTypes from '../eventTypes'
 import * as CommandTypes from '../commandTypes'
+import {actions as ResolveActions} from '../resolve/packages/resolve-redux/src/index'
 
 const aggregateName = 'recipes'
 
-export function createTodo(aggregateId) {
-  return {
-    type: ActionTypes.CREATE_TODO,
-    aggregateId,
-    aggregateName,
-    command: {
-      type: CommandTypes.CREATE,
-    },
-  }
-}
+export const createTodo = (aggregateId) => ResolveActions.sendCommand({
+  command: {
+    type: CommandTypes.CREATE
+  },
+  payload: {},
+  aggregateId,
+  aggregateName
+})
 
-export function removeTodo(aggregateId) {
-  return {
-    type: ActionTypes.REMOVE_TODO,
-    aggregateId,
-    aggregateName,
-    command: {
-      type: CommandTypes.REMOVE,
-    },
-  }
-}
+export const removeTodo = (aggregateId) => ResolveActions.sendCommand({
+  command: {
+    type: CommandTypes.REMOVE
+  },
+  payload: {},
+  aggregateId,
+  aggregateName
+})
 
-export function updateTodo(aggregateId, key, value) {
-  return {
-    type: ActionTypes.UPDATE_TODO,
-    aggregateId,
-    aggregateName,
-    payload: {
-      key,
-      value,
-    },
-    command: {
-      type: CommandTypes.UPDATE,
-    },
-  }
-}
+export const updateTodo = (aggregateId, text) => ResolveActions.sendCommand({
+  command: {
+    type: CommandTypes.UPDATE,
+  },
+  payload: {
+    text,
+  },
+  aggregateId,
+  aggregateName,
+})

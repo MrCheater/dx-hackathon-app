@@ -9,7 +9,7 @@ import resolveCommand from './resolve/packages/resolve-command/src/index'
 import resolveQuery from './resolve/packages/resolve-query/src/index'
 import aggregates from './aggregates/index'
 import projections from './projections/index'
-import { AUTH_JWT_SECRET } from './secret';
+import { JWT_SECRET } from './secret';
 
 (async () => {
   const store = resolveES({
@@ -41,7 +41,7 @@ import { AUTH_JWT_SECRET } from './secret';
 
     let user
     try {
-      user = jwt.verify(authorizationToken, AUTH_JWT_SECRET)
+      user = jwt.verify(authorizationToken, JWT_SECRET)
     } catch (error) {}
 
     return {
@@ -53,6 +53,7 @@ import { AUTH_JWT_SECRET } from './secret';
     executeCommand,
     executeQuery,
     bus,
+    projections,
     routes,
     getInitialState
   })

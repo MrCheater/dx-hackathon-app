@@ -48,8 +48,21 @@ export default {
 
     [CommandTypes.UPDATE](state, command) {
       tcomb.struct({
-        key: tcomb.String,
-        value: tcomb.union([tcomb.String, tcomb.Boolean, tcomb.Number]),
+        text: tcomb.String,
+        userId: tcomb.String,
+      })(command.payload)
+
+      checkAggregateExists(state, command)
+      checkEditPermission(state, command)
+
+      return {
+        type: EventTypes.UPDATE_TODO,
+        payload: command.payload
+      }
+    },
+
+    [CommandTypes.TOGGLE](state, command) {
+      tcomb.struct({
         userId: tcomb.String,
       })(command.payload)
 

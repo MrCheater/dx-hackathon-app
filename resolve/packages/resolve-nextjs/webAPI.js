@@ -8,6 +8,7 @@ export default async function webAPI({
   executeQuery,
   bus,
   routes,
+  projections,
   getInitialState
 }) {
   const dev = process.env.NODE_ENV !== 'production'
@@ -29,7 +30,7 @@ export default async function webAPI({
         cookies: req.cookies
       })
     } catch (error) {
-      res.status(500).end(error)
+      res.status(500).send(error)
     }
     next()
   })
@@ -42,7 +43,7 @@ export default async function webAPI({
     try {
       res.json(await executeQuery(projectionName))
     } catch (error) {
-      res.status(500).end(error)
+      res.status(500).send(error)
     }
   })
 
@@ -50,9 +51,9 @@ export default async function webAPI({
     const command = req.body
     try {
       await executeCommand(command)
-      res.status(200).end('ok')
+      res.status(200).send('ok')
     } catch (error) {
-      res.status(500).end(error)
+      res.status(500).send(error)
     }
   })
 

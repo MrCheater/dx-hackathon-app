@@ -1,9 +1,5 @@
-import recipes from './recipes'
-import users from './users'
-import brewhouses from './brewhouses'
+import todos from './todos'
 
 export default [
-  recipes,
-  users,
-  brewhouses,
+  todos
 ]
