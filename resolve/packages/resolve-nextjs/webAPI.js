@@ -56,7 +56,7 @@ export default async function webAPI({
     }
   })
 
-  app.use(handler)
+  setTimeout(() => app.use(handler), 0)
 
   return app
 }
