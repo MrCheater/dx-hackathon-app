@@ -1,8 +1,9 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 
+let memoizedStore
+
 export default createStore => Component => {
-  let memoizedStore
   function getStoreInstance(initialState) {
     if (typeof window === 'undefined') {
       return createStore(initialState)
