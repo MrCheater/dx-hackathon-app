@@ -2,9 +2,9 @@ import tcomb from 'tcomb'
 import Immutable from 'seamless-immutable'
 import * as EventTypes from '../eventTypes'
 import * as CommandTypes from '../commandTypes'
-import checkAggregateExists from './checkAggregateExists'
-import checkEditPermission from './checkEditPermission'
-import checkAggregateNotExists from './checkAggregateNotExists'
+import checkAggregateExists from './helpers/checkAggregateExists'
+import checkEditPermission from './helpers/checkEditPermission'
+import checkAggregateNotExists from './helpers/checkAggregateNotExists'
 
 export default {
   name: 'todos',
@@ -14,14 +14,14 @@ export default {
   eventHandlers: {
     [EventTypes.CREATE_TODO]: (state, event) => state.merge({
       created: true,
-      createdBy: event.payload.userId,
+      createdBy: event.payload.user,
     })
   },
 
   commands: {
     [CommandTypes.CREATE](state, command) {
       tcomb.struct({
-        userId: tcomb.String,
+        user: tcomb.String,
       })(command.payload)
 
       checkAggregateNotExists(state, command)
@@ -34,7 +34,7 @@ export default {
 
     [CommandTypes.REMOVE](state, command) {
       tcomb.struct({
-        userId: tcomb.String,
+        user: tcomb.String,
       })(command.payload)
 
       checkAggregateExists(state, command)
@@ -49,7 +49,7 @@ export default {
     [CommandTypes.UPDATE](state, command) {
       tcomb.struct({
         text: tcomb.String,
-        userId: tcomb.String,
+        user: tcomb.String,
       })(command.payload)
 
       checkAggregateExists(state, command)
@@ -63,7 +63,7 @@ export default {
 
     [CommandTypes.TOGGLE](state, command) {
       tcomb.struct({
-        userId: tcomb.String,
+        user: tcomb.String,
       })(command.payload)
 
       checkAggregateExists(state, command)

@@ -1,12 +1,13 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connectAdvanced } from 'react-redux'
+import shallowEqual from 'react-pure-render/shallowEqual'
 import TodoItem from '../components/TodoItem'
-import todoActions from '../actions/todoActions'
+import * as TodoActions from '../actions/todoActions'
 
-export const TodoList = ({ todos, addTodo }) => (
+export const TodoList = ({ todos, createTodo }) => (
   <div className = 'root'>
-    {todos.map(
+    {Object.values(todos ).map(
       ({ remove, update, text, complete }) => (
         <TodoItem
           remove = {remove}
@@ -16,6 +17,9 @@ export const TodoList = ({ todos, addTodo }) => (
         />
       )
     )}
+    <button onClick={createTodo}>
+      Create Todo
+    </button>
     <style jsx>{`
       .root {
         color: red;
@@ -25,17 +29,18 @@ export const TodoList = ({ todos, addTodo }) => (
 )
 
 export function selectorFactory(dispatch) {
-  let ownProps = {}
+  let state = {}
+  let props = {}
   let result = {}
-  const actions = bindActionCreators({
-
-  }, dispatch)
-  const addTodo = (text) => actions.addTodo(ownProps.userId, text)
-  return (nextState, nextOwnProps) => {
-    const todos = nextState.todos[nextProps.userId]
-    const nextResult = { ...nextOwnProps, todos, addTodo }
-    ownProps = nextOwnProps
-    if (!shallowEqual(result, nextResult)) result = nextResult
+  const actions = bindActionCreators(TodoActions, dispatch)
+  return (nextState, nextProps) => {
+    const todos = nextState.todos
+    const nextResult = { ...nextProps, todos, ...actions }
+    state = nextState
+    props = nextProps
+    if (!shallowEqual(result, nextResult)) {
+      result = nextResult
+    }
     return result
   }
 }

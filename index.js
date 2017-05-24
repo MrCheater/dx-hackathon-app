@@ -1,6 +1,6 @@
-import jwt from 'jsonwebtoken'
+import 'babel-polyfill'
 import routes from './routes'
-import webAPI from './resolve/packages/resolve-nextjs/webAPI'
+import webAPI from './resolve/packages/resolve-nextjs/web_api'
 import resolveES from './resolve/packages/resolve-es/src/index'
 import resolveESFile from './resolve/packages/resolve-es-file/src/index'
 import resolveBus from './resolve/packages/resolve-bus/src/index'
@@ -9,7 +9,7 @@ import resolveCommand from './resolve/packages/resolve-command/src/index'
 import resolveQuery from './resolve/packages/resolve-query/src/index'
 import aggregates from './aggregates/index'
 import projections from './projections/index'
-import { JWT_SECRET } from './secret';
+import config from './config'
 
 (async () => {
   const store = resolveES({
@@ -32,20 +32,14 @@ import { JWT_SECRET } from './secret';
     projections
   })
 
-  async function getInitialState({ cookies }) {
+  async function getInitialState({ user }) {
     const [todos] = await Promise.all([
       executeQuery('todos'),
     ])
 
-    const { authorizationToken } = cookies
-
-    let user
-    try {
-      user = jwt.verify(authorizationToken, JWT_SECRET)
-    } catch (error) {}
-
     return {
-      todos
+      todos,
+      user
     }
   }
 
@@ -55,14 +49,8 @@ import { JWT_SECRET } from './secret';
     bus,
     projections,
     routes,
-    getInitialState
-  })
-
-  app.listen(3000, err => {
-    if (err) {
-      throw err
-    }
-    console.log('> Ready on http://localhost:3000')
+    getInitialState,
+    config
   })
 })()
 

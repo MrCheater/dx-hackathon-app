@@ -1,5 +1,5 @@
 import React from 'react'
-import withResolve from '../resolve/packages/resolve-nextjs/withResolve'
+import withResolve from '../resolve/packages/resolve-nextjs/with_resolve'
 import App from '../components/App'
 import createStore from '../createStore'
 import TodoList from '../containers/TodoList'

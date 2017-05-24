@@ -9,7 +9,7 @@ export const initialStateTodo = {
 export default {
   name: 'todos',
 
-  initialState: () => Immutable({}),
+  initialState: Immutable({}),
 
   eventHandlers: {
     [EventTypes.CREATE_TODO]: (state, event) => state.set(event.aggregateId, {

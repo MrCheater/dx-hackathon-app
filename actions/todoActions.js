@@ -1,14 +1,15 @@
 import * as CommandTypes from '../commandTypes'
 import {actions as ResolveActions} from '../resolve/packages/resolve-redux/src/index'
+import uuidV4 from 'uuid/v4'
 
-const aggregateName = 'recipes'
+const aggregateName = 'todos'
 
-export const createTodo = (aggregateId) => ResolveActions.sendCommand({
+export const createTodo = () => ResolveActions.sendCommand({
   command: {
     type: CommandTypes.CREATE
   },
   payload: {},
-  aggregateId,
+  aggregateId: uuidV4(),
   aggregateName
 })
 
