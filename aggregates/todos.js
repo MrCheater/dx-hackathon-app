@@ -9,7 +9,7 @@ import checkAggregateNotExists from './helpers/checkAggregateNotExists'
 export default {
   name: 'todos',
 
-  initialState: () => Immutable({created: false}),
+  initialState: Immutable({created: false}),
 
   eventHandlers: {
     [EventTypes.CREATE_TODO]: (state, event) => state.merge({

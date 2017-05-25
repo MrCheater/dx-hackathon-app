@@ -1,6 +1,6 @@
 import 'babel-polyfill'
 import routes from './routes'
-import webAPI from './resolve/packages/resolve-nextjs/web_api'
+import webAPI from './webAPI'
 import resolveES from './resolve/packages/resolve-es/src/index'
 import resolveESFile from './resolve/packages/resolve-es-file/src/index'
 import resolveBus from './resolve/packages/resolve-bus/src/index'

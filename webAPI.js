@@ -32,7 +32,7 @@ export default async function webAPI({
     res.redirect(`https://internal.devexpress.com/azure-auth/login?redirect=${config.protocol}://${config.host}:${config.port}/auth/callback`)
   })
   app.get('/auth/callback', (req, res) => {
-    res.cookie('authorizationToken', req.query.token, { maxAge: 900000, httpOnly: true })
+    res.cookie('authorizationToken', req.query.token, { maxAge: 86400000, httpOnly: true })
     res.redirect('/')
   })
 

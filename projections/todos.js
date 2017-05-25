@@ -15,10 +15,10 @@ export default {
     [EventTypes.CREATE_TODO]: (state, event) => state.set(event.aggregateId, {
       ...initialStateTodo,
       createdAt: event.timestamp,
-      createdBy: event.payload.userId,
+      createdBy: event.payload.user,
       id: event.aggregateId,
     }),
-    [EventTypes.UPDATE_TODO]: (state, event) => state.setIn([event.aggregateId, event.payload.key], event.payload.value),
+    [EventTypes.UPDATE_TODO]: (state, event) => state.setIn([event.aggregateId, 'text'], event.payload.text),
     [EventTypes.REMOVE_TODO]: (state, event) => state.without(event.aggregateId),
   }
 };
