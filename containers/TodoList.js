@@ -4,13 +4,12 @@ import { connectAdvanced } from 'react-redux'
 import shallowEqual from 'react-pure-render/shallowEqual'
 import TodoItem from './TodoItem'
 import * as TodoActions from '../actions/todoActions'
+import RaisedButton from 'material-ui/RaisedButton'
 
 export const TodoList = ({ todos, createTodo }) => (
   <div className="root">
     {Object.values(todos).map(props => <TodoItem key={props.id} {...props} />)}
-    <button onClick={createTodo}>
-      Create Todo
-    </button>
+    <RaisedButton label="Create Todo" secondary onTouchTap={createTodo} />
   </div>
 )
 

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon index-dev.js",
     "prettier": "prettier-eslint --write  \"**/*.js\" --ignore \"**/node_modules/**\"",
-    "test": "jest --watchAll"
+    "test": "jest",
+    "test:watch": "jest --watchAll"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
     "jsonwebtoken": "^7.4.1",
+    "material-ui": "^0.18.1",
     "next": "^2.4.0",
     "next-routes": "^1.0.24",
     "prop-types": "15.5.10",
@@ -33,13 +35,9 @@
     "react-dom": "15.4.2",
     "react-pure-render": "^1.0.2",
     "react-redux": "^5.0.5",
+    "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.6.0",
     "redux-saga": "^0.15.3",
-    "seamless-immutable": "^7.1.2",
-    "socket.io": "^2.0.1",
-    "socket.io-client": "^2.0.1",
-    "tcomb": "^3.2.20",
-    "uuid": "^3.0.1",
     "regenerator-runtime": "^0.10.5",
     "resolve-bus": "0.0.1-alpha.79f28edb",
     "resolve-bus-memory": "0.0.1-alpha.79f28edb",
@@ -47,7 +45,12 @@
     "resolve-es": "0.0.1-alpha.9f28edb",
     "resolve-es-file": "0.0.1-alpha.79f28edb",
     "resolve-query": "0.0.1-alpha.79f28edb",
-    "resolve-redux": "0.0.1-alpha.79f28edb"
+    "resolve-redux": "0.0.1-alpha.79f28edb",
+    "seamless-immutable": "^7.1.2",
+    "socket.io": "^2.0.1",
+    "socket.io-client": "^2.0.1",
+    "tcomb": "^3.2.20",
+    "uuid": "^3.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
