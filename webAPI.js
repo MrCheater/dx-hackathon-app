@@ -29,10 +29,15 @@ export default async function webAPI({
   app.use(cookieParser())
 
   app.get('/auth', (req, res) => {
-    res.redirect(`https://internal.devexpress.com/azure-auth/login?redirect=${config.protocol}://${config.host}:${config.port}/auth/callback`)
+    res.redirect(
+      `https://internal.devexpress.com/azure-auth/login?redirect=${config.protocol}://${config.host}:${config.port}/auth/callback`
+    )
   })
   app.get('/auth/callback', (req, res) => {
-    res.cookie('authorizationToken', req.query.token, { maxAge: 86400000, httpOnly: true })
+    res.cookie('authorizationToken', req.query.token, {
+      maxAge: 86400000,
+      httpOnly: true
+    })
     res.redirect('/')
   })
 
@@ -115,7 +120,9 @@ export default async function webAPI({
       if (err) {
         throw err
       }
-      console.log(`> Ready on =${config.protocol}://${config.host}:${config.port}`)
+      console.log(
+        `> Ready on =${config.protocol}://${config.host}:${config.port}`
+      )
     })
   }, 0)
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 export class App extends React.PureComponent {
   componentDidMount() {
-    if(!this.props.isLogged) {
+    if (!this.props.isLogged) {
       window.location.replace('/auth')
     }
   }
@@ -21,11 +21,11 @@ export class App extends React.PureComponent {
 App.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
+    PropTypes.node
   ])
 }
 
-export const mapStateToProps = (state) => ({
+export const mapStateToProps = state => ({
   isLogged: !!state.user.upn
 })
 

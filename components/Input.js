@@ -82,7 +82,7 @@ export class Input extends React.PureComponent {
 
 Input.propTypes = {
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired
 }
 
 Input.defaultProps = {

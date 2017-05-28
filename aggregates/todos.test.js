@@ -8,7 +8,7 @@ describe('todos aggregate', () => {
     it('should return an event to create a todo', () => {
       const user = uuidV4()
       const state = {
-        created: false,
+        created: false
       }
 
       const command = {
@@ -17,10 +17,7 @@ describe('todos aggregate', () => {
         }
       }
 
-      const event = todos.commands[CommandTypes.CREATE](
-        state,
-        command
-      )
+      const event = todos.commands[CommandTypes.CREATE](state, command)
 
       expect(event).toEqual({
         type: EventTypes.CREATE_TODO,
@@ -31,7 +28,7 @@ describe('todos aggregate', () => {
     it('should throw error "Aggregate already exists"', () => {
       const user = uuidV4()
       const state = {
-        created: true,
+        created: true
       }
 
       const command = {
@@ -40,29 +37,23 @@ describe('todos aggregate', () => {
         }
       }
 
-      expect(() =>
-        todos.commands[CommandTypes.CREATE](
-          state,
-          command
-        )).toThrow(/Aggregate already exists/)
+      expect(() => todos.commands[CommandTypes.CREATE](state, command)).toThrow(
+        /Aggregate already exists/
+      )
     })
 
     it('should throw error "Validation Error"', () => {
       const state = {
-        created: false,
+        created: false
       }
 
       const command = {
-        payload: {
-        }
+        payload: {}
       }
 
-      expect(() =>
-        todos.commands[CommandTypes.CREATE](
-          state,
-          command
-        )).toThrow(/tcomb/)
+      expect(() => todos.commands[CommandTypes.CREATE](state, command)).toThrow(
+        /tcomb/
+      )
     })
   })
-
 })

@@ -9,19 +9,20 @@ import checkAggregateNotExists from './helpers/checkAggregateNotExists'
 export default {
   name: 'todos',
 
-  initialState: Immutable({created: false}),
+  initialState: Immutable({ created: false }),
 
   eventHandlers: {
-    [EventTypes.CREATE_TODO]: (state, event) => state.merge({
-      created: true,
-      createdBy: event.payload.user,
-    })
+    [EventTypes.CREATE_TODO]: (state, event) =>
+      state.merge({
+        created: true,
+        createdBy: event.payload.user
+      })
   },
 
   commands: {
     [CommandTypes.CREATE](state, command) {
       tcomb.struct({
-        user: tcomb.String,
+        user: tcomb.String
       })(command.payload)
 
       checkAggregateNotExists(state, command)
@@ -34,7 +35,7 @@ export default {
 
     [CommandTypes.REMOVE](state, command) {
       tcomb.struct({
-        user: tcomb.String,
+        user: tcomb.String
       })(command.payload)
 
       checkAggregateExists(state, command)
@@ -49,7 +50,7 @@ export default {
     [CommandTypes.UPDATE](state, command) {
       tcomb.struct({
         text: tcomb.String,
-        user: tcomb.String,
+        user: tcomb.String
       })(command.payload)
 
       checkAggregateExists(state, command)
@@ -63,7 +64,7 @@ export default {
 
     [CommandTypes.TOGGLE](state, command) {
       tcomb.struct({
-        user: tcomb.String,
+        user: tcomb.String
       })(command.payload)
 
       checkAggregateExists(state, command)
@@ -73,6 +74,6 @@ export default {
         type: EventTypes.UPDATE_TODO,
         payload: command.payload
       }
-    },
-  },
+    }
+  }
 }

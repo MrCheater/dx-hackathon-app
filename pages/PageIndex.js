@@ -6,7 +6,7 @@ import TodoList from '../containers/TodoList'
 
 const PageIndex = () => (
   <App>
-    <TodoList/>
+    <TodoList />
   </App>
 )
 

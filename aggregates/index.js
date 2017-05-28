@@ -1,5 +1,3 @@
 import todos from './todos'
 
-export default [
-  todos
-]
+export default [todos]

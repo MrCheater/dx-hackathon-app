@@ -40,7 +40,14 @@
     "socket.io-client": "^2.0.1",
     "tcomb": "^3.2.20",
     "uuid": "^3.0.1",
-    "regenerator-runtime": "^0.10.5"
+    "regenerator-runtime": "^0.10.5",
+    "resolve-bus": "0.0.1-alpha.79f28edb",
+    "resolve-bus-memory": "0.0.1-alpha.79f28edb",
+    "resolve-command": "0.0.1-alpha.79f28edb",
+    "resolve-es": "0.0.1-alpha.9f28edb",
+    "resolve-es-file": "0.0.1-alpha.79f28edb",
+    "resolve-query": "0.0.1-alpha.79f28edb",
+    "resolve-redux": "0.0.1-alpha.79f28edb"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",

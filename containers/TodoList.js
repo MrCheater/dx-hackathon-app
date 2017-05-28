@@ -6,10 +6,8 @@ import TodoItem from './TodoItem'
 import * as TodoActions from '../actions/todoActions'
 
 export const TodoList = ({ todos, createTodo }) => (
-  <div className = 'root'>
-    {Object.values(todos).map(
-      props => <TodoItem key = {props.id} {...props}/>
-    )}
+  <div className="root">
+    {Object.values(todos).map(props => <TodoItem key={props.id} {...props} />)}
     <button onClick={createTodo}>
       Create Todo
     </button>

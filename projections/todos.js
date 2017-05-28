@@ -12,13 +12,15 @@ export default {
   initialState: Immutable({}),
 
   eventHandlers: {
-    [EventTypes.CREATE_TODO]: (state, event) => state.set(event.aggregateId, {
-      ...initialStateTodo,
-      createdAt: event.timestamp,
-      createdBy: event.payload.user,
-      id: event.aggregateId,
-    }),
-    [EventTypes.UPDATE_TODO]: (state, event) => state.setIn([event.aggregateId, 'text'], event.payload.text),
-    [EventTypes.REMOVE_TODO]: (state, event) => state.without(event.aggregateId),
+    [EventTypes.CREATE_TODO]: (state, event) =>
+      state.set(event.aggregateId, {
+        ...initialStateTodo,
+        createdAt: event.timestamp,
+        createdBy: event.payload.user,
+        id: event.aggregateId
+      }),
+    [EventTypes.UPDATE_TODO]: (state, event) =>
+      state.setIn([event.aggregateId, 'text'], event.payload.text),
+    [EventTypes.REMOVE_TODO]: (state, event) => state.without(event.aggregateId)
   }
-};
+}

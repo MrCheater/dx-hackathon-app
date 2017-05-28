@@ -4,20 +4,20 @@ import App from '../containers/App'
 import createStore from '../createStore'
 import { connect } from 'react-redux'
 import TodoItem from '../containers/TodoItem'
-import routes from '../routes';
-const { Link } = routes;
+import routes from '../routes'
+const { Link } = routes
 
-const PageIndex = (props) => (
+const PageIndex = props => (
   <App>
     <Link route="PageIndex">
       <a>
         Back
       </a>
     </Link>
-    <TodoItem {...props}/>
+    <TodoItem {...props} />
   </App>
 )
 
-const mapStateToProps = (state, ownProps) => (state.todos[ownProps.url.query.id])
+const mapStateToProps = (state, ownProps) => state.todos[ownProps.url.query.id]
 
 export default withResolve(createStore)(connect(mapStateToProps)(PageIndex))

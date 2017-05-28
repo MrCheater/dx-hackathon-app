@@ -3,8 +3,8 @@ import socketIOClient from 'socket.io-client'
 import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import Immutable from 'seamless-immutable'
+import { saga } from 'resolve-redux'
 import reducers from './reducers'
-import saga from './resolve/packages/resolve-redux/src/saga'
 
 const CRITICAL_LEVEL = 100
 let socketIOFailCount = 0
