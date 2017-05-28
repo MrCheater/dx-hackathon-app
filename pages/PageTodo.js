@@ -1,23 +1,38 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import AppBar from 'material-ui/AppBar'
+import IconButton from 'material-ui/IconButton'
+import NavigationArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 import { withResolve } from '../resolve/packages/resolve-nextjs/src/index'
+import withMaterialUI from '../withMaterialUI'
 import App from '../containers/App'
 import createStore from '../createStore'
-import { connect } from 'react-redux'
 import TodoItem from '../containers/TodoItem'
 import routes from '../routes'
-const { Link } = routes
+const { Router } = routes
 
-const PageIndex = props => (
-  <App>
-    <Link route="PageIndex">
-      <a>
-        Back
-      </a>
-    </Link>
-    <TodoItem {...props} />
-  </App>
-)
+@withResolve(createStore)
+@withMaterialUI
+@connect(mapStateToProps)
+export default class PageTodo extends React.PureComponent {
+  onLeftIconButtonTouchTap = () => {
+    Router.pushRoute('PageIndex')
+  };
 
-const mapStateToProps = (state, ownProps) => state.todos[ownProps.url.query.id]
+  render() {
+    return (
+      <App>
+        <AppBar
+          title={`TodoList / TodoItem (id: "${this.props.id}")`}
+          iconElementLeft={<IconButton><NavigationArrowBack /></IconButton>}
+          onLeftIconButtonTouchTap={this.onLeftIconButtonTouchTap}
+        />
+        <TodoItem {...this.props} />
+      </App>
+    )
+  }
+}
 
-export default withResolve(createStore)(connect(mapStateToProps)(PageIndex))
+export function mapStateToProps(state, ownProps) {
+  return state.todos[ownProps.url.query.id]
+}
